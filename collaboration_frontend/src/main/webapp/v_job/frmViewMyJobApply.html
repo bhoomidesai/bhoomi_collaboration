@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+
+<link rel="stylesheet" href="resources/css/bootstrap.min.css" />
+<script src="resources/js/bootstrap.min.js"></script>
+
+</head>
+<body ng-app="myApp">
+	<div class="generic-container" ng-controller="JobController as ctrl">
+		<h3>List of Applied</h3>
+		<p>
+		Search Job:<input type="text" class="form-control control-label" size="40" ng-model="searchTerm" />
+		</p><br/>
+		<table class="table table-striped" style="width: 100%">
+			<tr style="font-weight: bold;">
+				<td style="width: 10%">ID#</td>
+				<td style="width: 10%">JOB ID</td>
+				<td style="width: 10%">STATUS</td>
+				<td style="width: 20%">USER EMAIL</td>
+				<td style="width: 30%">REMARK</td>
+				<td style="width: 20%">Delete</td>
+			<tr ng-repeat="ja in ctrl.jobapplications | filter:searchTerm">
+				<td style="width: 10%;">{{ja.id}}</td>
+				<td style="width: 10%;">{{ja.job_id}}</td>
+				<td style="width: 10%;">{{ja.status}}</td>
+				<td style="width: 20%;">{{ja.useremail}}</td>
+				<td style="width: 40%;">{{ja.remark}}</td>
+				<td><input type="button" class="btn btn-danger" value="Delete" ng-click="ctrl.delJobapp(ja.id)"></td>
+				
+			</tr>
+		</table>
+	</div>
+</body>
+</html>

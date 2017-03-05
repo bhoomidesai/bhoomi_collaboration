@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<div class="navbar navbar-inverse navbar-fixed-top headroom">
+		<div class="container">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="#/"><span
+          class="glyphicon glyphicon-home"><b>&nbsp;iNIITianPortal</b></span></a>
+          <ul class="nav navbar-nav pull-left">
+				
+			<!-- </div>
+			<div class="navbar-collapse collapse">
+				<ul class="nav navbar-nav pull-right"> -->
+					<li><a href="#">Home</a></li>
+					<li class="dropdown"><a href="#" class="dropdown-toggle"
+						data-toggle="dropdown">Blogs<b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li><a href="#/viewblogs">View Blog</a></li>
+							<li><a href="#/addblog">Post Blogs</a></li>
+							<li><a href="#/myblog">My Blogs</a></li>
+						</ul></li>
+					<li class="dropdown"><a href="#" class="dropdown-toggle"
+						data-toggle="dropdown">Forum<b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li><a href="#/viewforums">View Forums</a></li>
+							<li><a href="#/addforum">Post Forum</a></li>
+							<li><a href="#/myforum">My Forum</a></li>
+						</ul></li>
+					<li><a href="#/viewevents">Event</a></li>
+					<li  class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Friends<b class="caret"></b></a>
+					<ul class="dropdown-menu">
+						<li><a href="#/listmyfriends">My Friends</a></li>
+						<li><a href="#/listpending"   ng-click="ctrl.pendingfriends()">Request Pending</a></li>
+						<li><a href="#/listallusers"  ng-click="ctrl.fetchAllUsers()">Search Friends</a></li>
+						
+					</ul>
+					</li>
+					
+					
+					<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Career<b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li><a href="#/viewjobs">View Jobs</a></li>
+							<li><a href="#/viewappliedjobs">Applied Jobs</a></li>
+					   </ul>
+					<li><a href="#/chatroom">Chat</a></li>
+				</ul>
+				</div>
+					<div class="navbar-collapse collapse">
+				<ul class="nav navbar-nav pull-right">
+					<li><a ng-hide="currentUser.useremail==undefined"
+						href="#/home" ng-click="ctrl.logoutuser()">Logout</a></li>
+					<li style="font-weight: bold; color: white;"
+						ng-show="currentUser.useremail!==undefined">
+					<br />{{currentUser.useremail}} : {{currentUser.currentrole}}</li></ul>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

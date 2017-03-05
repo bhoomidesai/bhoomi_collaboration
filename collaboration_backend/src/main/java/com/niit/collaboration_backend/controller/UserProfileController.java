@@ -60,13 +60,16 @@ public class UserProfileController {
 			userprofile.setLastmodifiedddate(dateFormat.format(date));
 			userprofile.setApproved('N');
 			userprofile.setUseronline('N');
-			
+			//userprofile.setUseridentity("Role_User");
+			log.debug("hiii"+userprofile.getUseridentity());
 			switch(userprofile.getUseridentity()){
+			
 				case "Student": userprofile.setCurrentrole("Role_Student");break;
 				case "Alumini": userprofile.setCurrentrole("Role_Alumini");break;
 				case "External": userprofile.setCurrentrole("Role_External");break;
 			}
-			
+			log.debug("hiii"+userprofile.getCurrentrole());
+
 			service.saveUserProfile(userprofile);
 			log.debug("Update new user type");
 			return new ResponseEntity<UserProfile>(userprofile, HttpStatus.OK);

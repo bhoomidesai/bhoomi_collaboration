@@ -38,7 +38,7 @@ public class BlogDAO_Impl implements BlogDAO {
 			log.debug("Method => getAllBlogs() execution is starting");
 			allBlogs = sessionFactory.getCurrentSession().createQuery("FROM Blog").list();
 			if(allBlogs==null || allBlogs.isEmpty()){
-				log.debug("Record not found in UserBlog table");
+				log.debug("Record not found in Blog table");
 			}
 		}
 		catch(HibernateException ex){
@@ -54,7 +54,7 @@ public class BlogDAO_Impl implements BlogDAO {
 		try
 		{
 			log.debug("Method => saveBlog() execution is starting");
-			sessionFactory.getCurrentSession().saveOrUpdate(ubObj);
+			sessionFactory.getCurrentSession().save(ubObj);
 			return true;
 		}
 		catch(HibernateException ex){
@@ -66,10 +66,10 @@ public class BlogDAO_Impl implements BlogDAO {
 
 	@Override
 	@Transactional
-	public boolean updateApprove(int blgid, char flag) {
+	public boolean updateApprove(String blgid, char flag) {
 		try{
 			Session session = sessionFactory.getCurrentSession();
-	        Query query = session.createQuery("update UserBlog set Approve = '" + flag + "' where id = " + blgid);
+	        Query query = session.createQuery("update Blog set blogStatus = '" + flag + "' where blogId = '" + blgid+"'");
 			return query.executeUpdate()==1 ? true : false;
 		}
 		catch(HibernateException ex){
@@ -81,7 +81,7 @@ public class BlogDAO_Impl implements BlogDAO {
 
 	@Override
 	@Transactional
-	public Blog getBlogByID(int blgid) {
+	public Blog getBlogByID(String blgid) {
 		try
 		{
 			log.debug("Method => getBlogByID() execution is starting");
@@ -96,11 +96,13 @@ public class BlogDAO_Impl implements BlogDAO {
 
 	@Override
 	@Transactional
-	public boolean getUpdateLike(int blgid) {
+	public boolean getUpdateLike(String blgid) {
 		try{
 			Session session = sessionFactory.getCurrentSession();
-	        Query query = session.createQuery("update UserBlog set likes = likes + 1 where id = " + blgid);
-			return query.executeUpdate()==1 ? true : false;
+	        Query query = session.createQuery("update Blog set blogLike = blogLike + 1 where blogId ='" + blgid+"'");
+			boolean res =  query.executeUpdate()==1 ? true : false;
+			System.out.println("Result :" + res);
+			return res;
 		}
 		catch(HibernateException ex){
 			log.debug("Data update Error :" + ex.getMessage());
@@ -111,14 +113,14 @@ public class BlogDAO_Impl implements BlogDAO {
 
 	@Override
 	@Transactional
-	public boolean getDelete(int blgid) {
+	public boolean getDelete(String blgid) {
 		try{
 			Session session = sessionFactory.getCurrentSession();
-	        Query query = session.createQuery("update UserBlog set Approve = 'D' where id = " + blgid);
+	        Query query = session.createQuery("delete from Blog where blogId = '" + blgid+"'");
 			return query.executeUpdate()==1 ? true : false;
 		}
 		catch(HibernateException ex){
-			log.debug("Data update Error :" + ex.getMessage());
+			log.debug("Data delete Error :" + ex.getMessage());
 			ex.printStackTrace();
 			return false;
 		}

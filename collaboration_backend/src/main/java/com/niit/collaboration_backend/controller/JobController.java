@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.niit.collaboration_backend.dao.JobDAO;
+import com.niit.collaboration_backend.model.EventMaster;
 import com.niit.collaboration_backend.model.Job;
 import com.niit.collaboration_backend.model.JobApplication;
 
@@ -38,7 +39,7 @@ public class JobController {
 		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		Date date = new Date();
 		job.setPostdate(dateFormat.format(date));
-		job.setStatus('V');
+		job.setStatus('A');
 		
 		boolean flag = service.postjob(job);
 		
@@ -63,11 +64,23 @@ public class JobController {
 		}
 		return new ResponseEntity<List<Job>>(lsts, HttpStatus.OK);
 	}
+	
+	
+	@RequestMapping(value = "/alljobapp", method = RequestMethod.GET)
+	public ResponseEntity<List<JobApplication>> listAllJobapp()	{
+
+		log.debug("calling => listAllJobapp() method");
+		List<JobApplication> lsts = service.getAlljobapp();
+		if(lsts.isEmpty()){
+			return new ResponseEntity<List<JobApplication>>(HttpStatus.NO_CONTENT);
+		}
+		return new ResponseEntity<List<JobApplication>>(lsts, HttpStatus.OK);
+	}
 
 	@RequestMapping(value = "/allappliedjobs", method = RequestMethod.GET)
 	public ResponseEntity<List<JobApplication>> listAllAppliedJobs(HttpSession session)	{
 
-		log.debug("calling => listAllJobs() method");
+		log.debug("calling => listAllappliedJobs() method");
 		List<JobApplication> lsts = service.listAllAppliedJobs(session.getAttribute("loggeduser").toString());
 		if(lsts.isEmpty()){
 			return new ResponseEntity<List<JobApplication>>(HttpStatus.NO_CONTENT);
@@ -91,5 +104,19 @@ public class JobController {
 			return new ResponseEntity<Job>(HttpStatus.BAD_REQUEST);
 		}
 		return new ResponseEntity<Job>(HttpStatus.OK);
-	}	
+	}
+	@RequestMapping(value = "/deletejob/{jobid}", method = RequestMethod.POST)
+	public ResponseEntity<Job> deleteJob(@PathVariable("jobid") int jobid)	{
+
+		log.debug("calling => deleteJob() method");
+		boolean flag = service.removeJob(jobid);
+		return new ResponseEntity<Job>(HttpStatus.OK);
+	}
+	@RequestMapping(value = "/deletejobapp/{jobid}", method = RequestMethod.POST)
+	public ResponseEntity<Job> deleteEJobApp(@PathVariable("jobid") int jobid)	{
+
+		log.debug("calling => deleteJob() method");
+		boolean flag = service.removeJobapp(jobid);
+		return new ResponseEntity<Job>(HttpStatus.OK);
+	}
 }

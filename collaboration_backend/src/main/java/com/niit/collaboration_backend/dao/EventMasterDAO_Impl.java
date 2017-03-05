@@ -16,7 +16,7 @@ import com.niit.collaboration_backend.model.EventMaster;
 @Repository("eventmasterDao")
 public class EventMasterDAO_Impl implements EventMasterDAO {
 
-	private static final Logger log = LoggerFactory.getLogger(BulletinDAO_Impl.class);
+	private static final Logger log = LoggerFactory.getLogger(EventMasterDAO_Impl.class);
 
 	@Autowired
 	private SessionFactory sessionFactory;

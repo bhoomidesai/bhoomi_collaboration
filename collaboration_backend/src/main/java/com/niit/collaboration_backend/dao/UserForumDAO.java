@@ -24,4 +24,6 @@ public interface UserForumDAO {
 	public void updateForumCommentsCount(int forumid);
 	
 	public boolean deleteForum(int forumid);
+
+	public boolean deleteForumAdmin(int forumid);
 }

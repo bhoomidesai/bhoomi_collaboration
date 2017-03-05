@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -56,5 +57,13 @@ public class EventController {
 			return new ResponseEntity<List<EventMaster>>(HttpStatus.NO_CONTENT);
 		}
 		return new ResponseEntity<List<EventMaster>>(lsts, HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = "/deletevent/{evid}", method = RequestMethod.POST)
+	public ResponseEntity<EventMaster> deleteEvent(@PathVariable("evid") int evid)	{
+
+		log.debug("calling => deleteEvent() method");
+		boolean flag = service.removeEvent(evid);
+		return new ResponseEntity<EventMaster>(HttpStatus.OK);
 	}
 }

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<link rel="shortcut icon" href="favicon.ico">
+
+<link rel="stylesheet" href="resources/css/bootstrap.min.css" />
+<script src="resources/js/bootstrap.min.js"></script>
+
+</head>
+<body ng-app="myApp">
+	<div class="generic-container" ng-controller="BlogController as ctrl">
+		<h3>List of Blogs</h3>
+		<table class="table table-striped" style="width: 100%">
+			<tr style="font-weight: bold;">
+				<td style="width: 10%">ID#</td>
+				<td style="width: 10%">POST DATE</td>
+				<td style="width: 20%">TITLE</td>
+				<td style="width: 40%">DESCRIPTION</td>
+				<td style="width: 10%">By Whom?</td>
+				<td style="width: 10%">Approve</td>
+			</tr>
+			<tr ng-repeat="ub in ctrl.blogs | filter : { blogStatus: 'N' }:true">
+				<td style="width: 10%">{{ub.blogId}}</td>
+				<td style="width: 10%">{{ub.blogCreatedAt}}</td>
+				<td style="width: 20%">{{ub.blogTitle}}</td>
+				<td style="width: 40%">{{ub.blogDescription}}</td>
+				<td style="width: 10%">{{ub.useremail}}</td>
+				<td style="width: 10%">
+					<input type="button" class="btn btn-info" value="Approve" ng-click="ctrl.approveblog(ub.blogId)">
+					<input type="button" class="btn btn-danger" value="Delete..." ng-click="ctrl.delblog(ub.blogId)">
+				</td>
+			</tr>
+		</table>
+	</div>
+</body>
+</html>

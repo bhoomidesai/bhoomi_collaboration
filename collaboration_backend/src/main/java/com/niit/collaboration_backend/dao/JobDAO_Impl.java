@@ -60,7 +60,27 @@ public class JobDAO_Impl implements JobDAO {
 		try{
 			
 			log.debug("Method => getAllVacancies() execution is starting");
-			allJobs = sessionFactory.getCurrentSession().createQuery("FROM Job where status = 'V'").list();
+			allJobs = sessionFactory.getCurrentSession().createQuery("FROM Job where status = 'A'").list();
+			if(allJobs==null || allJobs.isEmpty()){
+				log.debug("Record not found in Userrole table");
+			}
+		}
+		catch(HibernateException ex){
+			log.debug("Fetch Error :" + ex.getMessage());
+			ex.printStackTrace();
+		}
+		return allJobs;
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	@Transactional
+	public List<JobApplication> getAlljobapp() {
+		List<JobApplication> allJobs = null;
+		try{
+			
+			log.debug("Method => getAllJobApp() execution is starting");
+			allJobs = sessionFactory.getCurrentSession().createQuery("FROM JobApplication").list();
 			if(allJobs==null || allJobs.isEmpty()){
 				log.debug("Record not found in Userrole table");
 			}
@@ -114,7 +134,7 @@ public class JobDAO_Impl implements JobDAO {
 		List<JobApplication> allAppldJobs = null;
 		try{
 			
-			log.debug("Method => getAllVacancies() execution is starting");
+			log.debug("Method => getAllAppliedjob() execution is starting");
 			allAppldJobs = sessionFactory.getCurrentSession().createQuery("FROM JobApplication where useremail = '" + 
 					useremail + "'").list();
 			if(allAppldJobs==null || allAppldJobs.isEmpty()){
@@ -126,5 +146,36 @@ public class JobDAO_Impl implements JobDAO {
 			ex.printStackTrace();
 		}
 		return allAppldJobs;
+	}
+	
+	@Override
+	@Transactional
+	public boolean removeJob(int jobid) {
+		boolean flag;
+		String SQL = "Delete from Job where id = " + jobid;
+		try{
+			
+			int res = sessionFactory.openStatelessSession().createQuery(SQL).executeUpdate();
+			flag =  res == 1 ? true : false;
+		}
+		catch(HibernateException ex){
+			flag=false;
+		}
+		return flag;
+	}
+	@Override
+	@Transactional
+	public boolean removeJobapp(int jobid) {
+		boolean flag;
+		String SQL = "Delete from JobApplication where id = " + jobid;
+		try{
+			
+			int res = sessionFactory.openStatelessSession().createQuery(SQL).executeUpdate();
+			flag =  res == 1 ? true : false;
+		}
+		catch(HibernateException ex){
+			flag=false;
+		}
+		return flag;
 	}
 }

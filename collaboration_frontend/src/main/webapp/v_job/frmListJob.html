@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<link rel="shortcut icon" href="favicon.ico">
+
+<link rel="stylesheet" href="resources/css/bootstrap.min.css" />
+<script src="resources/js/bootstrap.min.js"></script>
+
+</head>
+<body ng-app="myApp">
+
+		<div class="col-lg-12" ng-controller="JobController as ctrl">
+		<h3>List of Jobs:</h3>
+		<p>
+			Search Category:<input type="text" class="form-control control-label" size="40" ng-model="searchTerm" />
+		</p>
+		<div class="panel-body">
+			<div ng-repeat="uj in ctrl.jobs | filter:searchTerm"">
+				<div class="panel panel-success">
+					<div class="panel-heading" >
+						<h3 class="panel-title" style="font-weight: bold;"><b>{{uj.title}}</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<span style="color: orange;">{{uj.companyname}}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						</h3>
+					</div>
+					<b style="color: #7f8496;">Job Description </b><br>{{uj.description}}<br/><br/>
+					<b style="color: #7f8496;">Qualification : </b>{{uj.qualification}}&nbsp;&nbsp;
+					<b style="color: #7f8496;">Experience : </b>{{uj.experience}}&nbsp;&nbsp;
+					<b style="color: #7f8496;">Post Date </b>{{uj.postdate}}&nbsp;&nbsp;
+					<br/><br/>
+					<button ng-show="currentUser.currentrole=='Role_Student'" class="pull-center btn btn-success" style="font-weight: bold;" ng-click="ctrl.clickOnApply(uj.id)">
+						Apply
+					</button>
+					<p ng-show="currentUser.currentrole=='Role_Admin'">
+					&nbsp;&nbsp;&nbsp;<button name="buttom" class="btn btn-danger" ng-click="ctrl.delJob(uj.id)">Delete</button>
+				</p>
+					
+				</div>
+			</div>
+		</div>
+</body>
+</html>

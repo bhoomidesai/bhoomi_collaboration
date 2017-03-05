@@ -10,11 +10,11 @@ public interface BlogDAO {
 	
 	public boolean saveUserBlog(Blog ubObj);
 	
-	public boolean updateApprove(int blgid, char flag);
+	public boolean updateApprove(String blgid, char flag);
 		
-	public Blog getBlogByID(int blgid);
+	public Blog getBlogByID(String blgid);
 
-	public boolean getUpdateLike(int blgid);
+	public boolean getUpdateLike(String blgid);
 	
-	public boolean getDelete(int blgid);
+	public boolean getDelete(String blgid);
 }

@@ -180,4 +180,19 @@ public class UserForumDAO_Impl implements UserForumDAO {
 			return false;
 		}		
 	}
+	
+	@Override
+	@Transactional
+	public boolean deleteForumAdmin(int forumid) {
+		try{
+			Session session = sessionFactory.getCurrentSession();
+	        Query query = session.createQuery("delete from UserForum where id = " + forumid);
+			return query.executeUpdate()==1 ? true : false;
+		}
+		catch(HibernateException ex){
+			log.debug("Data update Error :" + ex.getMessage());
+			ex.printStackTrace();
+			return false;
+		}		
+	}
 }

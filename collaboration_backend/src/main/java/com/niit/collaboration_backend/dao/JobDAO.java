@@ -20,4 +20,9 @@ public interface JobDAO {
 	public JobApplication getJobApplication(String useremail, int jobid);
 
 	public List<JobApplication> listAllAppliedJobs(String useremail);
+	public List<JobApplication> getAlljobapp();
+
+	public boolean removeJob(int jobid);
+
+	public boolean removeJobapp(int jobid);
 }

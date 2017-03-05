@@ -1,9 +1,11 @@
 package com.niit.collaboration_backend.model;
 
 import java.util.UUID;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
 import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.stereotype.Component;
 
@@ -124,7 +126,7 @@ public class Blog{
 	public void setUserId(String userId) {
 		this.userId = userId;
 	}
-	public Blog() {
-		this.blogId = "BLG" + UUID.randomUUID().toString().substring(30).toUpperCase();
+	public String CreateBlogID() {
+		return "BLG" + UUID.randomUUID().toString().substring(30).toUpperCase();
 	}
 }

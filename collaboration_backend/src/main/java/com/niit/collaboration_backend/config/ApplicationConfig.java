@@ -36,7 +36,7 @@ public class ApplicationConfig
 		Properties properties = new Properties();
 		properties.put("hibernate.show_sql","true");
 		properties.put("hibernate.dialect","org.hibernate.dialect.OracleDialect");
-		properties.put("hibernate.hbm2ddl.auto","create");
+		properties.put("hibernate.hbm2ddl.auto","update");
 		return properties;
 	}
 	
@@ -46,9 +46,9 @@ public class ApplicationConfig
 		LocalSessionFactoryBuilder sessionBuilder = new LocalSessionFactoryBuilder(dataSource);
 		sessionBuilder.addProperties(getHibernateProperties());
 		sessionBuilder.addAnnotatedClass(Blog.class);
+		sessionBuilder.addAnnotatedClass(ForumCategory.class);
 		sessionBuilder.addAnnotatedClass(Friends.class);
 		sessionBuilder.addAnnotatedClass(Job.class);
-		sessionBuilder.addAnnotatedClass(Bulletin.class);
 		sessionBuilder.addAnnotatedClass(ChatForum.class);
 		sessionBuilder.addAnnotatedClass(ChatForumComment.class);
 		sessionBuilder.addAnnotatedClass(EventMaster.class);
