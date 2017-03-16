@@ -111,13 +111,13 @@ app.config(function($routeProvider)
 		templateUrl: 'v_friend/frmAllUsers.html',
 		controller: 'FriendController'
 	})
-	.when('/enterchat', {
+	.when('/chat', {
 		templateUrl: 'v_chat/frmChat.html',
-		controller: 'UserProfileController'
+		controller: 'ChatController'
 	})
 	.when('/chatroom', {
 		templateUrl: 'v_chat/frmEnterChat.html',
-		controller: 'UserProfileController'
+		controller: 'ChatController'
 	})
 	.otherwise({redirectTo: '/'});
 });
