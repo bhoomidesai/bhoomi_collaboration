@@ -18,7 +18,7 @@ public class ChatController {
 	{
 		log.debug("Calling the method sedMessage()");
 		log.debug("Message id :" + message.getFid());
-		System.out.println("in backend chat controller "+ message.getFid());
+		log.debug("in backend chat controller "+ message.getFid());
 		log.debug("Message    : " + message.getMessage());
 		
 		return new  OutputMessage(message, new Date());

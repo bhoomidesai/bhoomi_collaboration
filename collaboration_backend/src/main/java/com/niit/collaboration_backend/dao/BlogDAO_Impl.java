@@ -101,7 +101,7 @@ public class BlogDAO_Impl implements BlogDAO {
 			Session session = sessionFactory.getCurrentSession();
 	        Query query = session.createQuery("update Blog set blogLike = blogLike + 1 where blogId ='" + blgid+"'");
 			boolean res =  query.executeUpdate()==1 ? true : false;
-			System.out.println("Result :" + res);
+			log.debug("Result :" + res);
 			return res;
 		}
 		catch(HibernateException ex){

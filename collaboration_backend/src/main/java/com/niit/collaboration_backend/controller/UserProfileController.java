@@ -157,7 +157,7 @@ public class UserProfileController {
 	public ResponseEntity<UserProfile> logoutuser(HttpSession session)	{
 		String loggeduser = (String)session.getAttribute("loggeduser");
 		session.invalidate();
-		System.out.println("Logged user :" + loggeduser);
+		log.debug("Logged user :" + loggeduser);
 		service.updateOnOffLine(loggeduser, 'N');
 		return new ResponseEntity<UserProfile>(HttpStatus.OK);
 	}

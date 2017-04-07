@@ -14,7 +14,7 @@ import org.springframework.web.servlet.view.JstlView;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackages = "com.niit.collaborationbackend")
+@ComponentScan(basePackages = "com.niit.collaboration_backend")
 public class AppConfig extends WebMvcConfigurerAdapter {
 	private static final Logger log = LoggerFactory.getLogger(AppConfig.class);
 	

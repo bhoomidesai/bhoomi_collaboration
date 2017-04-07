@@ -29,7 +29,7 @@ public class UserTypeController {
 	public ResponseEntity<UserType> createUserType(@RequestBody UserType utype)
 	{
 		log.debug("calling => createUserType() method");
-		System.out.println(utype.getUserid() + " " + utype.getUsername());
+		log.debug(utype.getUserid() + " " + utype.getUsername());
 		if(service.checkUserType(utype.getUsername())==false)
 		{
 			log.debug("error in calling => createUserType() method");

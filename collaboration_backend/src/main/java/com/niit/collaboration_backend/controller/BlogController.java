@@ -22,7 +22,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.niit.collaboration_backend.dao.BlogDAO;
 import com.niit.collaboration_backend.model.Blog;
-
 @RestController
 public class BlogController {
 
@@ -67,7 +66,7 @@ public class BlogController {
 		if(lsts.isEmpty()){
 			return new ResponseEntity<List<Blog>>(HttpStatus.NO_CONTENT);
 		}
-		System.out.println("total Blogs :" + lsts.size());
+		log.debug("total Blogs :" + lsts.size());
 		return new ResponseEntity<List<Blog>>(lsts, HttpStatus.OK);
 	}
 	
@@ -111,11 +110,11 @@ public class BlogController {
 
 		log.debug("calling => Likeblog() method");
 		boolean flag = service.getUpdateLike(blgid);
-		System.out.println("Found :" + flag);
+		log.debug("Found :" + flag);
 		if(!flag){
 			return new ResponseEntity<Blog>(HttpStatus.BAD_REQUEST);
 		}
-		System.out.println("Execute query.........");
+		log.debug("Execute query.........");
 		Blog userblog = service.getBlogByID(blgid);
 		return new ResponseEntity<Blog>(userblog, HttpStatus.OK);
 	}	

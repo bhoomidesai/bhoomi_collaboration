@@ -54,7 +54,7 @@ public class FriendsDAO_Impl implements FriendsDAO {
 		List<Friends> friend = null;
 		log.debug("Method => getFriend() execution is starting");
 		String SQL = "FROM Friends where requser ='" + useremail + "' and touser like '" + friendid + "%'";
-		System.out.println("SQL :" + SQL);
+		log.debug("SQL :" + SQL);
 		friend = sessionFactory.getCurrentSession().createQuery(SQL).list();
 		if (!friend.isEmpty()) {
 			return friend.get(0);
@@ -121,7 +121,7 @@ public class FriendsDAO_Impl implements FriendsDAO {
 			log.debug("Method => listAllFriends() execution is starting");
 			allFriends = sessionFactory.getCurrentSession()
 					.createQuery("FROM Friends where touser ='" + useremail + "' and status = 'N'").list();
-			System.out.println("Pending : " + allFriends.size());
+			log.debug("Pending : " + allFriends.size());
 			if (allFriends == null || allFriends.isEmpty()) {
 				log.debug("Record not found in Friends table");
 			}

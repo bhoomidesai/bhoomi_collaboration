@@ -28,7 +28,7 @@ public class RoleController {
 	//Method Tested
 	public ResponseEntity<UserRole> createUserRole(@RequestBody UserRole urole)
 	{
-		System.out.println("Hi in controller" + urole.getRolename());
+		log.debug("In RoleController" + urole.getRolename());
 		log.debug("calling => adduserrole() method");
 		if(service.checkUserRole(urole.getRolename()))
 		{

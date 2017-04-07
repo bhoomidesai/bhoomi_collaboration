@@ -50,7 +50,7 @@ public class FriendsController {
 		}
 		catch(HibernateException ex)
 		{
-			System.out.println(ex.getMessage());
+			log.debug(ex.getMessage());
 		}
 		return new ResponseEntity<Friends>(frnd, HttpStatus.OK);
 	}
