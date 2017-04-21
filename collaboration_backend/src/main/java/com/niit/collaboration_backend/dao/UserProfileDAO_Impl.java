@@ -96,7 +96,7 @@ public class UserProfileDAO_Impl implements UserProfileDAO {
 	public UserProfile getUserProfileByEmail(String useremail) {
 		try
 		{
-			log.debug("Method => getBlogByID() execution is starting : " + useremail);
+			log.debug("Method => getMailByID() execution is starting : " + useremail);
 			return (UserProfile) sessionFactory.getCurrentSession().get(UserProfile.class, useremail);
 		}
 		catch(HibernateException ex){
@@ -113,7 +113,7 @@ public class UserProfileDAO_Impl implements UserProfileDAO {
 		String SQL = "FROM UserProfile where upper(useremail) = '" + useremail.toUpperCase() + "'";
 		log.debug("SQL :" + SQL);
 		List<UserProfile> obj = sessionFactory.getCurrentSession().createQuery(SQL).list();
-		return obj.isEmpty() ? true : false;
+		return obj.isEmpty() ? false : true;
 	}
 
 	@SuppressWarnings("unchecked")

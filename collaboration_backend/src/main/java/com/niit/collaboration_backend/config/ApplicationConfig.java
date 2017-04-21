@@ -49,8 +49,8 @@ public class ApplicationConfig
 		sessionBuilder.addAnnotatedClass(ForumCategory.class);
 		sessionBuilder.addAnnotatedClass(Friends.class);
 		sessionBuilder.addAnnotatedClass(Job.class);
-		sessionBuilder.addAnnotatedClass(ChatForum.class);
-		sessionBuilder.addAnnotatedClass(ChatForumComment.class);
+	/*	sessionBuilder.addAnnotatedClass(ChatForum.class);
+		sessionBuilder.addAnnotatedClass(ChatForumComment.class);*/
 		sessionBuilder.addAnnotatedClass(EventMaster.class);
 		sessionBuilder.addAnnotatedClass(JobApplication.class);
 		sessionBuilder.addAnnotatedClass(UserForum.class);

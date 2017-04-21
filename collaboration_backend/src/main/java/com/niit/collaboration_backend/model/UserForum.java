@@ -36,7 +36,7 @@ public class UserForum {
 	private String modifiedat;
 	
 	@Column
-	@NotEmpty(message = "Forum description should not be left blank")
+	@NotEmpty(message = "Forum Category should not be left blank")
 	private String forumcategory;
 
 	@Column

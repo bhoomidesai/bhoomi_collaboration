@@ -57,7 +57,7 @@
 					<h3 class="panel-title">Blogs</h3>
 				</div>
 				<div class="panel-body fixed-panel"
-					style="text-align: justify; font-size: 15px; height: 450px;">
+					style="text-align: justify; font-size: 15px; height: 510px;">
 					<marquee behavior="scroll" direction="up" onmouseover="this.stop()"
 						onmouseout="this.start()">
 						<div ng-repeat="ub in ctrl.blogs | filter: {blogStatus: 'A'}">
@@ -76,9 +76,9 @@
 		
 			<div ng-view></div>
 	
-	</div>		
-		<div id="myContainer"
-	style="height: 350px; width: 100%; overflow: hidden; cursor: pointer">
+	</div>	
+	<br/>	
+		<div id="myContainer" style="height: 350px; width: 100%; overflow: hidden; cursor: pointer">
 	<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="2000">
 		<!-- Indicators -->
 		
@@ -135,7 +135,7 @@
 					<h3 class="panel-title">Career</h3>
 				</div>
 				<div class="panel-body fixed-panel"
-					style="text-align: justify; font-size: 15px; height: 200px;">
+					style="text-align: justify; font-size: 15px; height: 225px;">
 					<marquee behavior="scroll" direction="up" onmouseover="this.stop()"
 						onmouseout="this.start()">
 						<div ng-repeat="uj in ctrl.jobs">
@@ -154,7 +154,7 @@
 					<h3 class="panel-title">Event</h3>
 				</div>
 				<div class="panel-body fixed-panel"
-					style="text-align: justify; font-size: 15px; height: 200px;">
+					style="text-align: justify; font-size: 15px; height: 225px;">
 					<marquee behavior="scroll" direction="up" onmouseover="this.stop()"
 						onmouseout="this.start()">
 						<div ng-repeat="ue in ctrl.events">
@@ -170,21 +170,7 @@
 			</div>
 		</div>
 	</div>
-	</div>
-	</div>
-	<section id="social">
-		<div class="container">
-			<div class="wrapper clearfix">
-				<!-- AddThis Button BEGIN -->
-				<div class="addthis_toolbox addthis_default_style">
-					<a class="addthis_button_facebook_like"
-						fb:like:layout="button_count"></a> <a class="addthis_button_tweet"></a>
-					<a class="addthis_button_linkedin_counter"></a> <a
-						class="addthis_button_google_plusone" g:plusone:size="medium"></a>
-				</div>
-			</div>
-		</div>
-	</section>
+
 	<footer id="footer" class="top-space">
 
 		<div class="footer2">
@@ -205,7 +191,6 @@
 					</div>
 				</div>
 			</div>
-		</div>
 		</div>
 
 	</footer>

@@ -2,6 +2,7 @@ package com.niit.collaboration_backend.dao;
 
 import java.util.List;
 import org.hibernate.HibernateException;
+import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.niit.collaboration_backend.model.Job;
 import com.niit.collaboration_backend.model.JobApplication;
+import com.niit.collaboration_backend.model.UserProfile;
 
 @EnableTransactionManagement
 @Repository("jobDao")
@@ -122,9 +124,9 @@ public class JobDAO_Impl implements JobDAO {
 	@Override
 	@Transactional
 	public JobApplication getJobApplication(String useremail, int jobid) {
-		JobApplication obj = (JobApplication) sessionFactory.getCurrentSession().createQuery("Select * From JobApplication where useremail = '" + 
-			useremail + " and job_id = " + jobid).list();
-		return obj;
+		JobApplication obj =  (JobApplication) sessionFactory.getCurrentSession().createQuery("From JobApplication where useremail = '" + useremail 
+								+ "' and jobid = " + jobid);
+		return  obj;
 	}
 
 	@SuppressWarnings("unchecked")
