@@ -67,6 +67,7 @@ app.factory('UserProfileService',['$http', '$q', '$rootScope', function($http,$q
             .then(
     	            function (response) {
     	                return response.data;
+    	    			$rootScope.UserLoggedIn = false;
     	            },
     	            function(errResponse){
     	                console.error('Error while logout User');

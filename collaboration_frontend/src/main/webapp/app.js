@@ -1,3 +1,4 @@
+
 var app = angular.module('myApp', ['ngRoute', 'ngCookies']);
 
 app.config(function($routeProvider)
@@ -123,16 +124,21 @@ app.config(function($routeProvider)
 });
 
 app.run( function($rootScope,$location,$cookieStore,$http){
-    
-    $rootScope.$on('$locationChangeStart',function(event,next,current){
+	
+	$rootScope.currentUser=$cookieStore.get('currentUser')||{};
+    if($rootScope.currentUser){
+        $http.defaults.headers.common['Authorization']= 'Basic' + $rootScope.currentUser;
+    }
+   
+	$rootScope.$on('$locationChangeStart',function(event,next,current){
         console.log("$locationChangeStart")
-        var restrictedPage=$.inArray($location.path(),['/login', '/userrole', '/userprofile', '/addjob','/addblog'])== -1;
+        var restrictedPage=$.inArray($location.path(),['/addblog','/addforum','/myblog']) === 0;
         console.log("restrictedpage ;"+restrictedPage)
-        var loggedIn=$rootScope.currentUser;
-        console.log("loggedin:"+loggedIn)
-        if(restrictedPage & !loggedIn){
+        var loggedIn=$rootScope.currentUser.useremail;
+        console.log("loggedin...~:"+$rootScope.currentUser.useremail)
+        if(restrictedPage && !loggedIn){
             console.log("navigation to login page")
-            $location.path('/home');
+            $location.path('/login');
         }
         
     });
